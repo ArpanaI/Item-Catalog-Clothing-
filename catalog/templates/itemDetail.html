@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% block content %}
+{% if cloth %}
+<div class="mdl-card auto-margin mdl-textfield--full-width form-grid mdl-shadow--3dp margin-bottom-10 mdl-color--white margin-top-10">
+    <div class="mdl-grid margin-0 mdl-textfield--full-width justify-start padding-0">
+        <div class=" mdl-cell--3-col mdl-cell--1-offset-desktop mdl-cell--6-col-phone mdl-cell--8-col-tablet  mdl-typography--text-center">
+        </div>
+        <div class=" mdl-cell--7-col mdl-cell--8-col-phone auto-margin cloth-header">
+            <h1 class="cloth-title">{{cloth.brandName}}</h1>
+
+            <div>
+                <span class="color">{{cloth.color}}</span>
+            </div>
+            <div class="action-button">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--white mdl-color-text--purple-A700 button-edit" onclick="location.href='{{url_for('editClothDetails', category = cloth.category, clothId = cloth.id)}}'">Edit Cloth Details</button>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color--purple-A700 mdl-color-text--white button-delete" onclick="location.href='{{url_for('deleteCloth', category = cloth.category, clothId = cloth.id)}}'">Delete Cloth</button>
+            </div>
+        </div>
+
+    </div>
+    <hr class="detail-content-line" />
+
+    <div class="cloth-description">
+        <div class="description-content margin-bottom-10">
+            {{cloth.description|safe}}
+        </div>
+
+    </div>
+
+</div>
+{% else %}
+  <span align="center" class="no-cloth-msg">Sorry! No Cloth in Database With This Category :(</span>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mdl-grid">
+{% for cloth in clothes %}
+
+    <div class="demo-card-wide mdl-card mdl-shadow--8dp">
+
+        <div class="mdl-card__title brighten" title="{{cloth.brandName}}">
+            <a href="{{url_for('clothDetail',category = cloth.category, clothId = cloth.id)}}"></a>
+        </div>
+
+        <div class="mdl-card__actions mdl-card--border">
+
+            <a href="{{url_for('clothDetail',category = cloth.category, clothId = cloth.id)}}" title="{{ cloth.brandName }}" tabindex="-1" class="link-fade"> <span>{{ cloth.brandName }}</span><span class="span-fade"></span></a>
+
+            <a href="{{url_for('clothDetail',category = cloth.category, clothId = cloth.id)}}" title="{{ cloth.color }}" class="color">{{ cloth.color }}</a>
+        </div>
+    </div>
+    {% else %}
+    <span align="center" class="no-cloth-msg">{{error}}</span>
+{% endfor %}
+</div>
+{% endblock %}
